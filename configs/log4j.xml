@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (C) 2010-2012 Eugen Feller, INRIA <eugen.feller@inria.fr>
+    Copyright (C) 2010-2013 Eugen Feller, INRIA <eugen.feller@inria.fr>
 
     This file is part of Snooze, a scalable, autonomic, and
     energy-aware virtual machine (VM) management framework.
@@ -42,38 +42,49 @@
 		<appender-ref ref="FA"/>   
 	</category> 
 
+	<category name="me.prettyprint.cassandra">  
+		<priority value="WARN" />  
+		<appender-ref ref="FA"/>   
+	</category> 
+
+	<category name="HColumnFamilyLogger">  
+		<priority value="WARN" />  
+		<appender-ref ref="FA"/>   
+	</category> 
+
+
 	<logger name="org.apache.commons.httpclient">
-		<level value="WARN"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>	
 	</logger>
 
 	<logger name="httpclient.wire">
-		<level value="WARN"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>	
 	</logger>
 
 	<logger name="httpclient.content">
-		<level value="WARN"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>	
 	</logger>
 	
 	<logger name="org.restlet">
-		<level value="OFF"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>
 	</logger>
 		
 	<logger name="LogService">
-		<level value="WARN"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>
 	</logger>
     
 	<logger name="org.mortbay.jetty">
-		<level value="WARN"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>
 	</logger>
 
 	<logger name="org.apache.http">
-		<level value="WARN"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>
 	</logger>
 
@@ -83,12 +94,12 @@
 	</logger>
 	    
 	<logger name="org.eclipse.jetty">
-		<level value="WARN"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>
 	</logger>
 	
 	<logger name="org.inria.myriads.snoozecommon">
-		<level value="WARN"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>
 	</logger>
 
@@ -98,9 +109,14 @@
 	</logger>  
 	
 	<logger name="org.inria.myriads.snoozenode.groupmanager.GroupManagerResource">
-		<level value="WARN"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>
-	</logger> 
+	</logger>
+	
+	<logger name="org.inria.myriads.snoozenode.groupmanager.managerpolicies.placement.PlacementPolicy">
+		<level value="DEBUG"/>
+		<appender-ref ref="FA"/>
+	</logger>  
 	
 	<logger name="org.inria.myriads.snoozenode.groupmanager.monitoring.receiver.LocalControllerSummaryReceiver">
 		<level value="WARN"/>
@@ -110,7 +126,7 @@
 	<logger name="org.inria.myriads.snoozenode.groupmanager.estimator">
 		<level value="WARN"/>
 		<appender-ref ref="FA"/>
-	</logger> 
+	</logger>
 	
 	<logger name="org.inria.myriads.snoozenode.database">
 		<level value="WARN"/>
@@ -122,6 +138,11 @@
 		<appender-ref ref="FA"/>
 	</logger> 
 
+	<logger name="org.inria.myriads.snoozenode.localcontroller.monitoring.service.VirtualMachineMonitoringService">		
+		<level value="WARN"/>
+		<appender-ref ref="FA"/>
+	</logger> 
+	
 	<logger name="org.inria.myriads.snoozenode.localcontroller.monitoring.api.impl">
 		<level value="WARN"/>
 		<appender-ref ref="FA"/>
@@ -135,21 +156,15 @@
 	<logger name="org.inria.myriads.snoozenode.groupmanager.virtualclusterparser">
 		<level value="WARN"/>
 		<appender-ref ref="FA"/>
-	</logger> 
-				
-	<logger name="org.inria.myriads.snoozenode.heartbeat">
-		<level value="WARN"/>
-		<appender-ref ref="FA"/>
-	</logger>  
+	</logger>
 	
 	<logger name="org.inria.myriads.snoozenode.util">
-		<level value="WARN"/>
+		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>
 	</logger>
 	
 	<logger name="org.inria.myriads.snoozenode">
 		<level value="DEBUG"/>
 		<appender-ref ref="FA"/>
-		<appender-ref ref="CA"/>
 	</logger>
 </log4j:configuration>

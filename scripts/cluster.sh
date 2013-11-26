@@ -82,6 +82,24 @@ stop_cluster () {
     stop_zookeeper
 }
 
+# Generates JMX parameters
+generate_jvm_parameters () {
+
+    JVM_OPTS=""
+    if $jmx_enable 
+    then
+        initial=$1
+        increment=$2
+        jmx_port=$(($1 + $2))
+        JMX_OPTS="-Dcom.sun.management.jmxremote.port=$jmx_port"
+        JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.authenticate=$jmx_authenticate"
+        JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.ssl=$jmx_ssl"
+
+        JVM_OPTS="$JVM_OPTS $JMX_OPTS"
+    fi   
+    echo $JVM_OPTS
+}
+
 # Generates the bootstap configs and start the nodes
 configure_and_start_bootstrap_nodes () {
     echo "$log_tag Generating bootstrap files!"
@@ -91,9 +109,12 @@ configure_and_start_bootstrap_nodes () {
         
         # configs
         generate_bootstrap_config $I $control_data_port
-           
+        
+        # jmx
+        JVM_OPTS=`generate_jvm_parameters 15000 $I`
+
         # start
-        start_snooze_node "./tmp/snooze_node_bs_$I.cfg" "./tmp/log4j_bs_$I.xml"
+        start_snooze_node "./tmp/snooze_node_bs_$I.cfg" "./tmp/log4j_bs_$I.xml" $JVM_OPTS
         
         control_data_port=$(($control_data_port+1))
     done  
@@ -111,8 +132,10 @@ configure_and_start_group_managers () {
         # configs
         generate_group_manager_config $I $control_data_port $monitoring_data_port $group_manager_heartbeat_mcast_port
         
+        # jmx
+        JVM_OPTS=`generate_jvm_parameters 16000 $I`
         # start
-        start_snooze_node "./tmp/snooze_node_gm_$I.cfg" "./tmp/log4j_gm_$I.xml"
+        start_snooze_node "./tmp/snooze_node_gm_$I.cfg" "./tmp/log4j_gm_$I.xml" $JVM_OPTS
                 
         control_data_port=$(($control_data_port+1))
         monitoring_data_port=$(($monitoring_data_port+1))
@@ -129,7 +152,11 @@ configure_and_start_local_controllers () {
               hypervisor port: $hypervisor_port"
         
         generate_local_controller_config $I $control_data_port $hypervisor_port
-        start_snooze_node "./tmp/snooze_node_lc_$I.cfg" "./tmp/log4j_lc_$I.xml"
+        
+        # jmx
+        JVM_OPTS=`generate_jvm_parameters 17000 $I`
+
+        start_snooze_node "./tmp/snooze_node_lc_$I.cfg" "./tmp/log4j_lc_$I.xml" $JVM_OPTS
         
         control_data_port=$(($control_data_port+1))
         hypervisor_port=$(($hypervisor_port+1))

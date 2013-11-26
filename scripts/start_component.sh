@@ -24,7 +24,17 @@ libvirt_command="/usr/sbin/libvirtd -d -l"
 # Starts a single snooze node
 start_snooze_node () {
     echo "$log_tag Starting cluster component with parameters: $@"
-    command="java -jar $node_jar_file $@ &"
+    cfg_file=$1
+    shift
+    log_file=$1
+    shift
+    JVM_OPTS=""
+    while(($#)); do
+        JVM_OPTS="$JVM_OPTS $1"
+        shift
+    done
+    command="java $JVM_OPTS -jar $node_jar_file $cfg_file $log_file &"
+    echo $command
     su -s /bin/bash $username -c "$command"
     sleep $sleep_time
 }

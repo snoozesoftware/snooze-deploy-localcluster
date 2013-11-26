@@ -32,16 +32,21 @@ success_code=0
 username="snoozeadmin"
 
 # Node files
-install_directory="/usr/share/snoozenode"
-node_jar_file="$install_directory/snoozenode.jar"
-node_config_file="$install_directory/configs/snooze_node.cfg"
-node_log_file="$install_directory/configs/log4j.xml"
+install_directory="/home/msimonin/git/snoozenode"
+node_jar_file="$install_directory/target/uber-snoozenode-2.1.0-SNAPSHOT.jar"
+node_config_file="$install_directory/configs/framework/snooze_node.cfg"
+node_log_file="$install_directory/configs/framework/log4j.xml"
 
 # Start method
 sleep_time=0
 
 # ZooKeeper
 zookeeper_init_file="/usr/share/zookeeper/bin/zkServer.sh"
+
+# JMX 
+jmx_enable=true
+jmx_authenticate=false
+jmx_ssl=false
 
 # Start ports
 start_control_data_port=5000
@@ -51,8 +56,9 @@ start_hypervisor_port=16509
 
 ## Cluster size 
 number_of_bootstrap_nodes=1
-number_of_group_managers=3
-number_of_local_controllers=2
+number_of_group_managers=2
+number_of_local_controllers=1
+
 
 print_settings() 
 {   
