@@ -32,8 +32,8 @@ success_code=0
 username="snoozeadmin"
 
 # Node files
-install_directory="/home/msimonin/git/snoozenode"
-node_jar_file="$install_directory/target/uber-snoozenode-2.1.0-SNAPSHOT.jar"
+install_directory="/tmp/snoozenode"
+node_jar_file="$install_directory/target/uber-snoozenode-2.1.0.jar"
 node_config_file="$install_directory/configs/framework/snooze_node.cfg"
 node_log_file="$install_directory/configs/framework/log4j.xml"
 
