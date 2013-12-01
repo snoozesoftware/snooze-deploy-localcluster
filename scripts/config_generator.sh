@@ -19,6 +19,31 @@
 # along with this program; if not, see <http://www.gnu.org/licenses>.
 #
 
+# Generates the snoozeimages config
+generate_snoozeimages_config () {
+    # config
+    cp ./configs/snoozeimages/snooze_images.cfg ./tmp/snooze_images.cfg
+    perl -pi -e "s/^network.listen.controlDataPort.*/network.listen.controlDataPort = $1/" "./tmp/snooze_images.cfg"
+
+    # log4j
+    cp ./configs/snoozeimages/log4j.xml ./tmp/log4j_snoozeimages.xml
+}
+
+# Generates the snoozeimages config
+generate_snoozeec2_config () {
+    # config
+    cp ./configs/snoozeec2/snooze_ec2.cfg ./tmp/snooze_ec2.cfg
+    perl -pi -e "s/^network.listen.port.*/network.listen.port = $1/" "./tmp/snooze_ec2.cfg"
+    perl -pi -e "s/^imageRepository.port.*/imageRepository.port = $2/" "./tmp/snooze_ec2.cfg"
+
+    # instances
+    cp ./configs/snoozeec2/instances ./tmp/instances
+
+    # log4j
+    cp ./configs/snoozeec2/log4j.xml ./tmp/log4j_snoozeec2.xml
+}
+
+
 # Generates the bootstrap config
 generate_bootstrap_config () {
     # config

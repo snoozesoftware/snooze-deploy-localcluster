@@ -32,12 +32,27 @@ success_code=0
 username="snoozeadmin"
 
 # Node files
-install_directory="/tmp/snoozenode"
-node_jar_file="$install_directory/target/uber-snoozenode-2.1.0.jar"
-node_config_file="$install_directory/configs/framework/snooze_node.cfg"
-node_log_file="$install_directory/configs/framework/log4j.xml"
+install_directory="/usr/share/snoozenode"
+node_jar_file="$install_directory/snoozenode.jar"
+node_config_file="$install_directory/configs/snooze_node.cfg"
+node_log_file="$install_directory/configs/log4j.xml"
 
+# Snoozeimages files
+snoozeimages_enable=true
+snoozeimages_install_directory="/usr/share/snoozeimages"
+snoozeimages_jar_file="$snoozeimages_install_directory/snoozeimages.jar"
+snoozeimages_config_file="$snoozeimages_install_directory/configs/snooze_images.cfg"
+snoozeimages_log_file="$snoozeimages_install_directory/configs/log4j.xml"
+
+# Snoozeec2 files
+snoozeec2_enable=false
+snoozeec2_install_directory="/usr/share/snoozeec2"
+snoozeec2_jar_file="$snoozeec2_install_directory/snoozeec2.jar"
+snoozeec2_config_file="$snoozeec2_install_directory/configs/snooze_ec2.cfg"
+snoozeec2_instances_file="$snoozeec2_install_directory/configs/instances"
+snoozeec2_log_file="$snoozeec2_install_directory/configs/log4j.xml"
 # Start method
+
 sleep_time=0
 
 # ZooKeeper
@@ -53,6 +68,8 @@ start_control_data_port=5000
 start_monitoring_data_port=6000
 start_group_manager_heartbeat_mcast_port=10000
 start_hypervisor_port=16509
+snoozeimages_port=4000
+snoozeec2_port=4001
 
 ## Cluster size 
 number_of_bootstrap_nodes=1

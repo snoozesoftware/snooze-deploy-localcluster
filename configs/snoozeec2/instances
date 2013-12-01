@@ -1,0 +1,148 @@
+{
+  "instances"       :
+  {
+    "t1.micro"      :
+    {
+      "id"          : "t1.micro",
+      "name"        : "Micro Instance",
+      "ram"         : 613000,
+      "disk"        : 15,
+      "bandwidth"   : 0,
+      "vcpus"       : 1
+    },
+    "m1.small"      :
+    {
+      "id"          : "m1.small",
+      "name"        : "Medium Instance",
+      "ram"         : 1739000,
+      "disk"        : 160,
+      "bandwidth"   : 0,
+      "vcpus"       : 1
+    },
+    "m1.large"      :
+    {
+      "id"          : "m1.large",
+      "name"        : "Large Instance",
+      "ram"         : 7680000,
+      "disk"        : 850,
+      "bandwidth"   : 0,
+      "vcpus"       : 2
+    },
+    "m1.xlarge"     :
+    {
+      "id"          : "m1.xlarge",
+      "name"        : "Extra Large Instance",
+      "ram"         : 15360000,
+      "disk"        : 1690,
+      "bandwidth"   : 0,
+      "vcpus"       : 4
+    },
+    "c1.medium"     : 
+    {
+        "id"        : "c1.medium",
+        "name"      : "High-CPU Medium Instance",
+        "ram"       : 1740000,
+        "disk"      : 350,
+        "bandwidth" : 0,
+        "vcpus"     : 2
+    },
+    "c1.xlarge"     : 
+    {
+        "id"        : "c1.xlarge",
+        "name"      : "High-CPU Extra Large Instance",
+        "ram"       : 7680000,
+        "disk"      : 1690,
+        "bandwidth" : 0,
+        "vcpus"     : 8
+    },
+    "m2.xlarge"     : 
+    {
+        "id"        : "m2.xlarge",
+        "name"      : "High-Memory Extra Large Instance",
+        "ram"       : 17510000,
+        "disk"      : 420,
+        "bandwidth" : 0,
+        "vcpus"     : 2
+    },
+    "m2.2xlarge"    : 
+    {
+        "id"        : "m2.2xlarge",
+        "name"      : "High-Memory Double Extra Large Instance",
+        "ram"       : 35021000,
+        "disk"      : 850,
+        "bandwidth" : 0,
+        "vcpus"     : 4
+    },
+    "m2.4xlarge"    : 
+    {
+        "id"        : "m2.4xlarge",
+        "name"      : "High-Memory Quadruple Extra Large Instance",
+        "ram"       : 70042000,
+        "disk"      : 1690,
+        "bandwidth" : 0,
+        "vcpus"     : 8
+    },
+    "m3.xlarge"     :
+    {
+        "id"        : "m3.xlarge",
+        "name"      : "Extra Large Instance",
+        "ram"       : 15360000,
+        "disk"      : 0,
+        "bandwidth" : 0,
+        "vcpus"     : 8
+    },
+    "m3.2xlarge"    : {
+        "id"        : "m3.2xlarge",
+        "name"      : "Double Extra Large Instance",
+        "ram"       : 30720000,
+        "disk"      : 0,
+        "bandwidth" : 0,
+        "vcpus"     : 16
+    },
+    "cg1.4xlarge"   : 
+    {
+        "id"        : "cg1.4xlarge",
+        "name"      : "Cluster GPU Quadruple Extra Large Instance",
+        "ram"       : 22528000,
+        "disk"      : 1690,
+        "bandwidth" : 0,
+        "vcpus"     : 16
+    },
+    "cc1.4xlarge"   : 
+    {
+        "id"        : "cc1.4xlarge",
+        "name"      : "Cluster Compute Quadruple Extra Large Instance",
+        "ram"       : 23552000,
+        "disk"      : 1690,
+        "bandwidth" : 0,
+        "vcpus"     : 16
+    },
+    "cc2.8xlarge"   : 
+    {
+        "id"        : "cc2.8xlarge",
+        "name"      : "Cluster Compute Eight Extra Large Instance",
+        "ram"       : 63488000,
+        "disk"      : 3370,
+        "bandwidth" : 0,
+        "vcpus"     : 8
+    },
+    "cr1.8xlarge"   : 
+    {
+        "id"        : "cr1.8xlarge",
+        "name"      : "High Memory Cluster Eight Extra Large",
+        "ram"       : 244000000,
+        "disk"      : 240,
+        "bandwidth" : 0,
+        "vcpus"     : 32
+    },
+    "hs1.8xlarge"   : 
+    {
+        "id"        : "hs1.8xlarge",
+        "name"      : "High Storage Eight Extra Large Instance",
+        "ram"       : 119808000,
+        "disk"      : 48000,
+        "bandwidth" : 0,
+        "vcpus"     : 16
+    }
+  }
+}

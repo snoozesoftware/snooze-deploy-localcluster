@@ -39,6 +39,14 @@ start_cluster () {
     configure_and_start_bootstrap_nodes
     configure_and_start_group_managers
     configure_and_start_local_controllers
+    if ($snoozeimages_enable); then
+      update_snoozeimages_configuration_file
+      configure_and_start_snoozeimages
+    fi
+    if ($snoozeec2_enable); then
+      update_snoozeec2_configuration_file
+      configure_and_start_snoozeec2
+    fi
 }
 
 # Starts zookeeper
@@ -67,6 +75,38 @@ update_configuration_file () {
         echo "$log_tag Unable to update logger configuration file! Falling back to original!"
     fi
 }
+update_snoozeimages_configuration_file () {
+    cp $snoozeimages_config_file "./configs//snoozeimages/snooze_images.cfg" 2> /dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "$log_tag Unable to update configuation file! Falling back to original!"
+    fi
+    
+    cp $snoozeimages_log_file "./configs/snoozeimages/log4j.xml" 2> /dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "$log_tag Unable to update logger configuration file! Falling back to original!"
+    fi
+}
+update_snoozeec2_configuration_file () {
+    cp $snoozeec2_config_file "./configs/snoozeec2/snooze_ec2.cfg" 2> /dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "$log_tag Unable to update configuation file! Falling back to original!"
+    fi
+    cp $snoozeec2_instances_file "./configs/snoozeec2/instances" 2> /dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "$log_tag Unable to update configuation file! Falling back to original!"
+    fi
+    
+    cp $snoozeec2_log_file "./configs/snoozeec2/log4j.xml" 2> /dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "$log_tag Unable to update logger configuration file! Falling back to original!"
+    fi
+}
+
 
 # Stop the cluster
 stop_cluster () {
@@ -76,9 +116,19 @@ stop_cluster () {
     if [ $? -ne 0 ]
     then
         echo "$log_tag Unable to kill the Snooze processes!"
-        return
     fi
-    
+    # stop snoozeimages
+    kill -9 `ps ax | grep $snoozeimages_jar_file | grep -v grep | awk '{print $1}'` > /dev/null 2>&1
+    if [ $? -ne 0 ]
+    then
+        echo "$log_tag Unable to kill the snoozeimages processes!"
+    fi
+    # stop snoozeec2
+    kill -9 `ps ax | grep $snoozeec2_jar_file | grep -v grep | awk '{print $1}'` > /dev/null 2>&1
+    if [ $? -ne 0 ]
+    then
+        echo "$log_tag Unable to kill the snoozeec2 processes!"
+    fi
     stop_zookeeper
 }
 
@@ -99,6 +149,31 @@ generate_jvm_parameters () {
     fi   
     echo $JVM_OPTS
 }
+
+# Generates the snoozeimages configs and start the service
+configure_and_start_snoozeimages () {
+    echo "$log_tag Generating snoozeimages files!"
+    echo "$log_tag : snoozeimages service , port: $snoozeimages_port"
+        
+    # configs
+    generate_snoozeimages_config $snoozeimages_port
+      
+    # start
+    start_snoozeimages "./tmp/snooze_images.cfg" "./tmp/log4j_snoozeimages.xml" 
+}
+
+# Generates the snoozeec2 configs and start the service
+configure_and_start_snoozeec2 () {
+    echo "$log_tag Generating snoozeec2 files!"
+    echo "$log_tag : snoozeec2 service , port: $snoozeec2_port"
+        
+    # configs
+    generate_snoozeec2_config $snoozeec2_port $snoozeimages_port
+      
+    # start
+    start_snoozeec2 "./tmp/snooze_ec2.cfg" "./tmp/instances" "./tmp/log4j_snoozeec2.xml" 
+}
+
 
 # Generates the bootstap configs and start the nodes
 configure_and_start_bootstrap_nodes () {

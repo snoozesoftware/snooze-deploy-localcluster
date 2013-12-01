@@ -45,3 +45,22 @@ start_libvirt_node () {
     echo "$libvirt_command -p /tmp/snooze_libvirtd_$1.pid -f $2"
     $libvirt_command -p /tmp/snooze_libvirtd_$1.pid -f "$2"
 }
+
+# start the snoozeimages service 
+start_snoozeimages () {
+  cfg_file=$1
+  log_file=$2
+  command="java -jar $snoozeimages_jar_file $cfg_file $log_file &"
+  echo $command
+  su -s /bin/bash $username -c "$command"
+}
+
+# start the snoozeec2 service 
+start_snoozeec2 () {
+  cfg_file=$1
+  instance_file=$2
+  log_file=$3
+  command="java -jar $snoozeec2_jar_file $cfg_file $instance_file $log_file &"
+  echo $command
+  su -s /bin/bash $username -c "$command"
+}
