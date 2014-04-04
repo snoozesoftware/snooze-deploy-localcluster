@@ -19,9 +19,7 @@ then
   exit 1
 fi
 
-http_proxy=$http_proxy\
-https_proxy=$https_proxy\
-git clone $REPO
+http_proxy=$http_proxy https_proxy=$https_proxy git clone $REPO
 
 # launch the automatic installer
 $SCRIPT_DIR/install.sh 
