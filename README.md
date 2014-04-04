@@ -7,6 +7,20 @@ scripts to deploy snooze on a local machine
 
 Please refer to <http://snooze.inria.fr/documentation/deployment/> for the installation and usage documentation.
 
+
+## If you can't wait
+
+``` curl https://raw.githubusercontent.com/snoozesoftware/snooze-deploy-localcluster/master/webinstall.sh | sh ```
+
+This method has been tested on 
+* debian wheezy
+* ubuntu 13.10
+* ubuntu 13.04
+
+### Troubleshootings
+
+* on ubuntu 13.04, restart the dbus service seems required in order to make libvirtd daemon start listening on tcp.
+
 ## Development
 
 * Fork the repository
