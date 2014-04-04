@@ -19,6 +19,7 @@ then
 fi
 
 git clone https://github.com/msimonin/snooze-deploy-localcluster
+cd $SCRIPT_DIR && git checkout develop
 
 # launch the automatic installer
 $SCRIPT_DIR/install.sh 
