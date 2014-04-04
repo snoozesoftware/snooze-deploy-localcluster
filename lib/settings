@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+PACKAGES="openjdk-7-jre zookeeper zookeeperd qemu-kvm libvirt-bin libvirt-dev"
+
+SNOOZEADMIN=snoozeadmin
+SNOOZEGROUP=snooze
+
+# jars
+JARS_LOCATION="http://snooze.inria.fr/downloads/jars/latest"
+JARS="snoozenode.jar snoozeec2.jar snoozeimages.jar"
+
+# configs
+CONFIGS_LOCATION="http://snooze.inria.fr/downloads/jars/latest"
+CONFIGS="snooze_node.cfg snoozeimages.cfg snoozeec2.cfg instances"
+
+# logs property files
+LOG4J_LOCATION="http://snooze.inria.fr/downloads/jars/latest"
+LOG4J="log4j.xml log4j_snoozeimages.xml log4j_snoozeec2.xml"
+
+SNOOZENODE_FILES_LOCATION="http://snooze.inria.fr/downloads/jars/latest/snoozenode"
+SNOOZENODE_FILES="snoozenode.jar snooze_node.cfg log4j.xml"
+
+SNOOZEIMAGES_FILES_LOCATION="http://snooze.inria.fr/downloads/jars/latest/snoozeimages"
+SNOOZEIMAGES_FILES="snoozeimages.jar snooze_images.cfg log4j.xml"
+
+SNOOZEEC2_FILES_LOCATION="http://snooze.inria.fr/downloads/jars/latest/snoozeec2"
+SNOOZEEC2_FILES="snoozeec2.jar snooze_ec2.cfg log4j.xml instances"
+

@@ -1,0 +1,17 @@
+# functions-extra  
+#
+# Save trace setting
+XTRACE=$(set +o | grep xtrace)
+set +o xtrace
+
+
+# Config Functions
+# ================
+
+function w_get {
+    echo "Downloading $1 to $2"
+    http_proxy=$http_proxy \
+    https_proxy=$https_proxy \
+    wget $1 -O $2    
+}
+
