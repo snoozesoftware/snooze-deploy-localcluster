@@ -17,10 +17,6 @@ This method has been tested on
 * ubuntu 13.10
 * ubuntu 13.04
 
-### Troubleshootings
-
-* on ubuntu 13.04, restart the dbus service seems required in order to make libvirtd daemon start listening on tcp.
-
 ## Development
 
 * Fork the repository
