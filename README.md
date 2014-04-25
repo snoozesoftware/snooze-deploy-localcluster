@@ -17,6 +17,13 @@ This method has been tested on
 * ubuntu 13.10
 * ubuntu 13.04
 
+## Troubleshootings
+
+Unable to connect to libvirt : 
+
+* dbus daemon needs to be restarted
+* locales needs to be regenerated
+
 ## Development
 
 * Fork the repository
