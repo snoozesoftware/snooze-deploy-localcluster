@@ -11,6 +11,7 @@ source $TOP_DIR/lib/settings
 SNOOZENODE_FILES_DESTINATION=$TOP_DIR/files/snoozenode
 SNOOZEIMAGES_FILES_DESTINATION=$TOP_DIR/files/snoozeimages
 SNOOZEEC2_FILES_DESTINATION=$TOP_DIR/files/snoozeec2
+SNOOZECLIENT_FILES_DESTINATION=$TOP_DIR/files/snoozeclient
 
 # Determine what system we are running on.  This provides ``os_VENDOR``,
 # ``os_RELEASE``, ``os_UPDATE``, ``os_PACKAGE``, ``os_CODENAME``
@@ -84,6 +85,15 @@ do
   w_get "$SNOOZEIMAGES_FILES_LOCATION/$i" "$SNOOZEIMAGES_FILES_DESTINATION/$i"
 done
 
+mkdir -p $SNOOZECLIENT_FILES_DESTINATION
+
+echo "Downloading snoozeclient files"
+for i in $SNOOZECLIENT_FILES;
+do
+  echo "Installing $i"
+  w_get "$SNOOZECLIENT_FILES_LOCATION/$i" "$SNOOZECLIENT_FILES_DESTINATION/$i"
+done
+
 
 ## change jars/configs location in scripts/settings.sh 
 perl -pi -e "s,^install_directory.*,install_directory=\"$SNOOZENODE_FILES_DESTINATION\"," "$TOP_DIR/scripts/settings.sh"
@@ -104,7 +114,7 @@ perl -pi -e "s,^snoozeec2_log_file.*,snoozeec2_log_file=\"\\\$snoozeec2_install_
 perl -pi -e "s,^snoozeec2_instances_file.*,snoozeec2_instances_file=\"\\\$snoozeec2_install_directory/instances\"," "$TOP_DIR/scripts/settings.sh"
 
 ## Installation of snoozeimages
-pool=$(virsh -q pool-list --all)
+pool=$(virsh -q pool-list --all | grep default)
 if [[ -z $pool ]] 
 then
   echo "Defining a new default pool"

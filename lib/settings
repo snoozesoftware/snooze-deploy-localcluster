@@ -26,3 +26,5 @@ SNOOZEIMAGES_FILES="snoozeimages.jar snooze_images.cfg log4j.xml"
 SNOOZEEC2_FILES_LOCATION="http://snooze.inria.fr/downloads/jars/latest/snoozeec2"
 SNOOZEEC2_FILES="snoozeec2.jar snooze_ec2.cfg log4j.xml instances"
 
+SNOOZECLIENT_FILES_LOCATION="http://snooze.inria.fr/downloads/jars/latest/snoozeclient"
+SNOOZECLIENT_FILES="snoozeclient.jar snooze_client.cfg log4j.xml"
