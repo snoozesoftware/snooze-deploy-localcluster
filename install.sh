@@ -53,7 +53,7 @@ fi
 if [[ $os_VENDOR == "Ubuntu" ]]; then
   sudo adduser snoozeadmin libvirtd
 elif [[ $os_VENDOR == "Debian" ]]; then
-  sudo adduser snoozeadmin libvirtd
+  sudo adduser snoozeadmin libvirt
 else
   exit_distro_not_supported "Add user"
 fi
