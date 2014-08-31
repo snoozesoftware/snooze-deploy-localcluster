@@ -123,3 +123,16 @@ then
   sudo virsh pool-start default
 fi
 
+##Add the libvirt-qemu group to the group allowed to use /var/lib/libvirt/images/
+sudo adduser libvirt-qemu $LIBVIRT_GROUP
+sudo chown -R root:$LIBVIRT_GROUP /var/lib/libvirt/images
+sudo chmod 775 -R /var/lib/libvirt/images
+ 
+#snooze-context to generate context.iso
+if [ ! -f "/var/lib/libvirt/images/context.iso" ]
+then
+  #Download context.zip in the current repertory
+  w_get "http://snooze.inria.fr/downloads/vmcontext/context.iso" "/var/lib/libvirt/images/context.iso"
+else
+  echo "L'image context.iso est déjà présente dans le répertoire /var/lib/libvirt/images"
+fi
