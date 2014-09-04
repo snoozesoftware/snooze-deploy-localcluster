@@ -123,3 +123,35 @@ then
   sudo virsh pool-start default
 fi
 
+# post install
+echo "fix permissions on libvirt pool" 
+if [[ $os_VENDOR == "Ubuntu" ]]; then
+  sudo adduser libvirt-qemu libvirtd
+  sudo chown root:libvirtd -R /var/lib/libvirt/images
+elif [[ $os_VENDOR == "Debian" ]]; then
+  sudo adduser libvirt-qemu libvirt
+  sudo chown root:libvirt -R /var/lib/libvirt/images
+else
+  exit_distro_not_supported "Cannot add libvirt-qemu to libvirt group"
+fi
+
+#snooze-context to generate context.iso
+if [ ! -f "/var/lib/libvirt/images/context.iso" ]
+then
+    #Download context.zip in the current repertory
+    w_get "http://snooze.inria.fr/downloads/images/context.iso" "/var/lib/libvirt/images/context.iso"
+else
+      echo "L'image context.iso est déjà présente dans le répertoire /var/lib/libvirt/images"
+fi
+
+#snooze-ubuntu1310 already exists
+if [ ! -f "/var/lib/libvirt/images/snooze-ubuntu1310.qcow2" ]
+then
+    #download context.zip in the current repertory
+    w_get "http://snooze.inria.fr/downloads/images/snooze-ubuntu1310.qcow2" "/var/lib/libvirt/images/snooze-ubuntu1310.qcow2"
+else
+    echo "l'image context.iso est déjà présente dans le répertoire /var/lib/libvirt/images"
+fi
+
+sudo chmod 775 -R /var/lib/libvirt/images
+
